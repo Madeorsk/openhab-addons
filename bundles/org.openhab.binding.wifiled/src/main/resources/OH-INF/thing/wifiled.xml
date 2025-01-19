@@ -45,6 +45,14 @@
 				</options>
 				<advanced>true</advanced>
 			</parameter>
+			<parameter name="rgbwVariant" type="boolean" required="false">
+				<label>RGBW Variant</label>
+				<description>A protocol variant to always overwrite both colors and whites on every update. Try to enable this
+					option if your LED doesn't always update when you change colors or whites.
+				</description>
+				<default>false</default>
+				<advanced>true</advanced>
+			</parameter>
 			<parameter name="driver" type="text" required="false">
 				<label>Device Driver</label>
 				<description>The driver used to control the device</description>

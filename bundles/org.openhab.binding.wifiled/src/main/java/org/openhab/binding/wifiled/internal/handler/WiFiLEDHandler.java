@@ -63,10 +63,11 @@ public class WiFiLEDHandler extends BaseThingHandler {
         int port = (config.getPort() == null) ? AbstractWiFiLEDDriver.DEFAULT_PORT : config.getPort();
         Protocol protocol = config.getProtocol() == null ? Protocol.LD382A : Protocol.valueOf(config.getProtocol());
         Driver driverName = config.getDriver() == null ? Driver.CLASSIC : Driver.valueOf(config.getDriver());
+        boolean rgbwVariant = config.getRgbwVariant() != null && config.getRgbwVariant();
 
         switch (driverName) {
             case CLASSIC:
-                driver = new ClassicWiFiLEDDriver(this, config.getIp(), port, protocol);
+                driver = new ClassicWiFiLEDDriver(this, config.getIp(), port, protocol, rgbwVariant);
                 break;
 
             case FADING:
@@ -75,7 +76,8 @@ public class WiFiLEDHandler extends BaseThingHandler {
                         : config.getFadeDurationInMs();
                 int fadeSteps = config.getFadeSteps() == null ? FadingWiFiLEDDriver.DEFAULT_FADE_STEPS
                         : config.getFadeSteps();
-                driver = new FadingWiFiLEDDriver(config.getIp(), port, protocol, fadeDurationInMs, fadeSteps);
+                driver = new FadingWiFiLEDDriver(config.getIp(), port, protocol, rgbwVariant, fadeDurationInMs,
+                        fadeSteps);
                 break;
         }
 

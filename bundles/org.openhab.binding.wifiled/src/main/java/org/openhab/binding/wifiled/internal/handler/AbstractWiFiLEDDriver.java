@@ -66,11 +66,13 @@ public abstract class AbstractWiFiLEDDriver {
     protected String host;
     protected int port;
     protected Protocol protocol;
+    protected boolean rgbwVariant;
 
-    public AbstractWiFiLEDDriver(String host, int port, Protocol protocol) {
+    public AbstractWiFiLEDDriver(String host, int port, Protocol protocol, boolean rgbwVariant) {
         this.host = host;
         this.port = port;
         this.protocol = protocol;
+        this.rgbwVariant = rgbwVariant;
     }
 
     /**
@@ -217,9 +219,9 @@ public abstract class AbstractWiFiLEDDriver {
     protected byte[] getBytesForColor(byte r, byte g, byte b, byte w, byte w2, LevelWriteMode writeMode) {
         byte[] bytes;
         if (protocol == Protocol.LD382 || protocol == Protocol.LD382A) {
-            bytes = new byte[] { 0x31, r, g, b, w, writeMode.byteValue };
+            bytes = new byte[] { 0x31, r, g, b, w, (this.rgbwVariant ? LevelWriteMode.ALL : writeMode).byteValue };
         } else if (protocol == Protocol.LD686) {
-            bytes = new byte[] { 0x31, r, g, b, w, w2, writeMode.byteValue };
+            bytes = new byte[] { 0x31, r, g, b, w, w2, (this.rgbwVariant ? LevelWriteMode.ALL : writeMode).byteValue };
         } else {
             throw new UnsupportedOperationException("Protocol " + protocol + " not yet implemented");
         }

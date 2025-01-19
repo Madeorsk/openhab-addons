@@ -39,8 +39,9 @@ public class ClassicWiFiLEDDriver extends AbstractWiFiLEDDriver {
     private Future<Boolean> ledUpdateFuture = CompletableFuture.completedFuture(null);
     private LEDStateDTO cachedLedStatus = null;
 
-    public ClassicWiFiLEDDriver(WiFiLEDHandler wifiLedHandler, String host, int port, Protocol protocol) {
-        super(host, port, protocol);
+    public ClassicWiFiLEDDriver(WiFiLEDHandler wifiLedHandler, String host, int port, Protocol protocol,
+            boolean rgbwVariant) {
+        super(host, port, protocol, rgbwVariant);
         this.wifiLedHandler = wifiLedHandler;
     }
 

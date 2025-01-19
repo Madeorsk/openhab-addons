@@ -61,9 +61,9 @@ public class FadingWiFiLEDDriver extends AbstractWiFiLEDDriver {
     private final int fadeDurationInMs;
     private final int totalFadingSteps;
 
-    public FadingWiFiLEDDriver(String host, int port, AbstractWiFiLEDDriver.Protocol protocol, int fadeDurationInMs,
-            int totalFadingSteps) {
-        super(host, port, protocol);
+    public FadingWiFiLEDDriver(String host, int port, AbstractWiFiLEDDriver.Protocol protocol, boolean rgbwVariant,
+            int fadeDurationInMs, int totalFadingSteps) {
+        super(host, port, protocol, rgbwVariant);
         this.fadeDurationInMs = fadeDurationInMs < 10 ? 10 : fadeDurationInMs;
         this.totalFadingSteps = totalFadingSteps < 1 ? 1 : totalFadingSteps;
     }
