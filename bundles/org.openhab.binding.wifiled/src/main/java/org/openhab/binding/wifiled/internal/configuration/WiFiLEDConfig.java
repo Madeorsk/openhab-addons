@@ -24,6 +24,7 @@ public class WiFiLEDConfig {
     private Integer port;
     private Integer pollingPeriod;
     private String protocol;
+    private Boolean rgbwVariant;
     private String driver;
     private Integer fadeDurationInMs;
     private Integer fadeSteps;
@@ -58,6 +59,14 @@ public class WiFiLEDConfig {
 
     public void setProtocol(String protocol) {
         this.protocol = protocol;
+    }
+
+    public Boolean getRgbwVariant() {
+        return rgbwVariant;
+    }
+
+    public void setRgbwVariant(Boolean rgbwVariant) {
+        this.rgbwVariant = rgbwVariant;
     }
 
     public String getDriver() {
